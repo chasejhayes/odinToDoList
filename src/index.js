@@ -1,7 +1,12 @@
 import "./styles.css";
-import { test } from "./code.js";
+import { } from "./code.js";
+import { makeNewProjectButton, runNewFormCreation} from "./dom.js";
 
-alert(test)
+// creates "create new project" button
+makeNewProjectButton();
+// runs advent listener to show form
+runNewFormCreation();
+
 
 
 
