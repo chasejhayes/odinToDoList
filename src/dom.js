@@ -38,14 +38,18 @@ export function addNewProject() {
 
 
 // DOM styling for main page
+// TODO: divide into individual functions
 
 export function generateHomePage() {
     // header
     const header = document.createElement("div");
     header.id = "header";
     header.style.backgroundColor = "#660033"
-    header.color = "#F5E9DA"
-    header.textContent = "TO DO LIST"
+    header.style.color = "#F5E9DA"
+    header.textContent = "TO DO LIST";
+    header.style.fontSize = "100px";
+    header.style.alignContent = "center";
+    header.style.paddingLeft = "25px"
     header.style.height = "25vh"
     container.appendChild(header);
 
@@ -55,7 +59,7 @@ export function generateHomePage() {
     body.style.backgroundColor = "#F5E9DA";
     body.style.height = "75vh";
     body.style.display = "grid";
-    body.style.gridTemplateColumns = "1fr 3fr"
+    body.style.gridTemplateColumns = "250px 3fr"
     container.appendChild(body);
 
 
@@ -63,13 +67,11 @@ export function generateHomePage() {
     // sidebar
     const sideBar = document.createElement("div");
     sideBar.id = "sideBar";
-    sideBar.style.borderRight = "1px solid black"
+    sideBar.style.borderRight = "2px solid #660033"
     body.appendChild(sideBar)
 
     // display
     const display = document.createElement("div");
     display.id = "display";
     body.appendChild(display);
-
-
 }
