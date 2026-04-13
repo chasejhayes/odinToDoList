@@ -19,11 +19,8 @@ export function makeNewProject(title, description, dueDate, priority){
 
 
 
-
-
-
-
-
 // To do:
-// 
-// 
+// make a home page 
+// click on the cards to open the project details
+// fix the create new project to be broader
+// make the current new project details into array stored in each project
