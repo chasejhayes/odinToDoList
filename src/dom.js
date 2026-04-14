@@ -47,7 +47,6 @@ function makeNewProjectButton() {
     projectButton.textContent = "Create New Project";
   
     
-
     sideBar.appendChild(projectButton)
 }
 
@@ -78,16 +77,34 @@ const form = document.querySelector("form")
 const dialog = document.querySelector("#form_dialog")
 
 
+function makeProjectSelection(){
+   
+    const newProject = projectArr.at(-1)
+
+    const projectCard = document.createElement("div");
+    projectCard.classList.add("project");
+    projectCard.textContent = newProject.title;
+
+    container.appendChild(projectCard)
+
+
+
+}
+
 export function addNewProject() {
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         let fd = new FormData(form);
         let obj = Object.fromEntries(fd)
 
-        makeNewProject(obj.title, obj.description, obj.dueDate, obj.priority);
+        makeNewProject(obj.title, obj.dueDate, obj.priority);
         dialog.close();
         form.reset();
         console.log(projectArr)
 
+        makeProjectSelection()
+
     })
+    
 }
+
