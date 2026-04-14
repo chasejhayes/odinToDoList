@@ -5,17 +5,6 @@ import { makeNewProject, projectArr } from "./code.js";
 const container = document.querySelector("#container")
 
 // DOM styling for main page
-// TODO: divide into individual functions
-
-
-function makeNewProjectButton() {
-    const projectButton = document.createElement("button");
-    projectButton.classList.add("button");
-    projectButton.textContent = "Create New Project";
-
-    sideBar.appendChild(projectButton)
-}
-
 function makeHeader() {
     const header = document.createElement("div");
     header.id = "header";
@@ -50,7 +39,16 @@ function makeDisplay() {
     const display = document.createElement("div");
     display.id = "display";
     body.appendChild(display);
+}
 
+function makeNewProjectButton() {
+    const projectButton = document.createElement("button");
+    projectButton.classList.add("button");
+    projectButton.textContent = "Create New Project";
+  
+    
+
+    sideBar.appendChild(projectButton)
 }
 
 
@@ -59,11 +57,7 @@ export function generateHomePage() {
     makeBody();
     makeSideBar();
     makeDisplay();
-
-
     makeNewProjectButton()
-
-
 
 }
 
