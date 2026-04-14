@@ -1,17 +1,21 @@
 import "./styles.css";
 import { } from "./code.js";
-import { makeNewProjectButton, runNewFormCreation, addNewProject, generateHomePage} from "./dom.js";
+import { generateHomePage, runNewFormCreation, addNewProject} from "./dom.js";
+
+// creates DOM styling 
+generateHomePage()
 
 // creates "create new project" button
-makeNewProjectButton();
+
 // runs advent listener to show form
 runNewFormCreation();
 // updates project array with submitted information
 addNewProject()
 
 
-// creates DOM styling 
-generateHomePage()
+
+
+
 
 
 
