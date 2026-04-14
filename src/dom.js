@@ -33,6 +33,7 @@ function makeSideBar() {
     sideBar.id = "sideBar";
     sideBar.style.borderRight = "2px solid #660033"
     body.appendChild(sideBar)
+    return sideBar;
 }
 
 function makeDisplay() {
@@ -80,14 +81,22 @@ const dialog = document.querySelector("#form_dialog")
 function makeProjectSelection(){
    
     const newProject = projectArr.at(-1)
-
     const projectCard = document.createElement("div");
     projectCard.classList.add("project");
-    projectCard.textContent = newProject.title;
 
-    container.appendChild(projectCard)
+    const projectTitle = document.createElement("h1");
+    projectTitle.textContent = newProject.title;
+    projectCard.appendChild(projectTitle);
 
+    const projectDueDate = document.createElement("p");
+    projectDueDate.textContent = newProject.dueDate;
+    projectCard.appendChild(projectDueDate);
 
+    const projectPriority = document.createElement("p");
+    projectPriority.textContent = newProject.priority;
+    projectCard.appendChild(projectPriority);
+
+    sideBar.appendChild(projectCard)
 
 }
 

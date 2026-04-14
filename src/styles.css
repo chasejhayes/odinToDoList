@@ -1,3 +1,5 @@
+/* ToDO: center button in div */
+
 .button {
     padding: 25px;
     border-radius: 15px;
@@ -7,5 +9,14 @@
     background-color: #660033;
     margin-top: 15px;
     margin-left: 13px;
-    
+}
+
+
+.project{
+    color: #660033;
+    border: 1px solid #660033;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
