@@ -13,6 +13,7 @@ export let projectArr = [];
 
 export function makeNewProject(title, dueDate, priority){
     let project = new Project(title, dueDate, priority);
+    project.id = crypto.randomUUID();
     return projectArr.push(project)
 }
 
@@ -24,3 +25,5 @@ export function makeNewProject(title, dueDate, priority){
 // when clicked form details appear on display along with button that allows you to add tasks to the project
 // hook up dialog form/button/array that updates the project
 // check box to cross off individual tasks 
+// css that makes there be a drop shadow when moused over
+// Header should only shrink so far

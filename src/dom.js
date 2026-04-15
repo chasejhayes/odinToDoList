@@ -40,14 +40,15 @@ function makeDisplay() {
     const display = document.createElement("div");
     display.id = "display";
     body.appendChild(display);
+    return display;
 }
 
 function makeNewProjectButton() {
     const projectButton = document.createElement("button");
     projectButton.classList.add("button");
     projectButton.textContent = "Create New Project";
-  
-    
+
+
     sideBar.appendChild(projectButton)
 }
 
@@ -78,11 +79,14 @@ const form = document.querySelector("form")
 const dialog = document.querySelector("#form_dialog")
 
 
-function makeProjectSelection(){
-   
+function makeProjectSelection() {
+
     const newProject = projectArr.at(-1)
     const projectCard = document.createElement("div");
     projectCard.classList.add("project");
+    projectCard.id = newProject.id;
+    const projectID = projectCard.id;
+
 
     const projectTitle = document.createElement("h1");
     projectTitle.textContent = newProject.title;
@@ -96,9 +100,22 @@ function makeProjectSelection(){
     projectPriority.textContent = newProject.priority;
     projectCard.appendChild(projectPriority);
 
+    projectCard.addEventListener("click", () => {
+        makeProjectDisplayPage(newProject.title)
+       
+    })
+
+
+
+
+    console.log(projectCard.id)
+
     sideBar.appendChild(projectCard)
+    return projectID;
 
 }
+
+
 
 export function addNewProject() {
     form.addEventListener("submit", (e) => {
@@ -114,6 +131,27 @@ export function addNewProject() {
         makeProjectSelection()
 
     })
-    
+
 }
 
+// function makeProjectDisplayPage(title){
+//     const titleDiv = document.crea
+//     console.log(title);
+//     // button for entering details
+// }
+
+
+function makeProjectDisplayPage(title){
+    const titleDiv = document.createElement("div");
+    titleDiv.textContent = title;
+    titleDiv.id = "titleDiv";
+    display.appendChild(titleDiv);
+    // button for entering details
+}
+
+// function test(){
+//     let x = prompt();
+//     const text = document.createElement("div");
+//     text.textContent = x;
+//     display.appendChild(text)
+// }

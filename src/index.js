@@ -22,6 +22,7 @@ addNewProject()
 
 
 
+
 // Use factory function to generate new todo objects 
 // To do properties: titles, description, dueDate, priority
 // a "default folder" and the option to create and delete new named folders
