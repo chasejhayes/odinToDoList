@@ -8,15 +8,28 @@ class Project{
     }
 }
 
+class Task{
+    constructor(title){
+        this.title = title
+    }
+}
+
 export let projectArr = [];
 
 
 export function makeNewProject(title, dueDate, priority){
     let project = new Project(title, dueDate, priority);
     project.id = crypto.randomUUID();
-    return projectArr.push(project)
+    let taskArr = [];
+    return projectArr.push(project), taskArr
 }
 
+export function makeNewTask(title){
+    let task = new Task(title);
+    return taskArr.push(task)
+}
+
+// making a new project should create an array
 
 
 // To do:

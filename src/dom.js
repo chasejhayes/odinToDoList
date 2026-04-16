@@ -1,6 +1,6 @@
 
 
-import { makeNewProject, projectArr } from "./code.js";
+import { makeNewProject, projectArr, makeNewTask,} from "./code.js";
 
 const container = document.querySelector("#container")
 
@@ -134,24 +134,48 @@ export function addNewProject() {
 
 }
 
-// function makeProjectDisplayPage(title){
-//     const titleDiv = document.crea
-//     console.log(title);
-//     // button for entering details
-// }
-
 
 function makeProjectDisplayPage(title){
+    display.textContent = "";
     const titleDiv = document.createElement("div");
     titleDiv.textContent = title;
     titleDiv.id = "titleDiv";
     display.appendChild(titleDiv);
-    // button for entering details
+
+    makeAddTaskButton(display)
 }
 
-// function test(){
-//     let x = prompt();
-//     const text = document.createElement("div");
-//     text.textContent = x;
-//     display.appendChild(text)
-// }
+function makeAddTaskButton(value){
+    const addTaskButton = document.createElement("button");
+    addTaskButton.textContent = "Add task";
+    value.appendChild(addTaskButton);
+    addTask(addTaskButton)
+}
+
+function makeIndividualTaskArrs(projectID){
+    
+
+
+}
+
+const masterArr = []
+let taskArr = [];
+
+function addTask(element){
+    
+    element.addEventListener("click", () => {
+        let newTask = prompt("Enter a new task");
+        masterArr.push(taskArr);
+        return taskArr.push(newTask);
+    })
+
+    console.log(taskArr)
+    console.log(masterArr)
+
+}
+
+
+
+
+
+// make individual functions for button that displays tasks/title/etc
