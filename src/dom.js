@@ -61,11 +61,14 @@ export function generateHomePage() {
     makeNewProjectButton()
 
 }
+// end of functions that style home page
 
 
 
 
 
+// selects the 'create new project' button 
+// on click it opens a dialog (pop up window)
 
 export function runNewFormCreation() {
     const button = document.querySelector("button");
@@ -75,54 +78,70 @@ export function runNewFormCreation() {
 
 }
 
+// assigns DOM elements to variables 
 const form = document.querySelector("form")
 const dialog = document.querySelector("#form_dialog")
 
 
-function makeProjectSelection() {
 
+function makeProjectSelection() {
+    // select object from project array
     const newProject = projectArr.at(-1)
+    // create a div on which to display project and assign a class
     const projectCard = document.createElement("div");
     projectCard.classList.add("project");
+    // makes the DOM id equal to the generated id
     projectCard.id = newProject.id;
+    // assigns the project DOM id value to a variable (?)
     const projectID = projectCard.id;
 
-
+    // creates a header element and makes the text content that of the selected object title
+    // appends the heading to the created div 
     const projectTitle = document.createElement("h1");
     projectTitle.textContent = newProject.title;
     projectCard.appendChild(projectTitle);
 
+    // does the same but for the due date information (will probably delete)
     const projectDueDate = document.createElement("p");
     projectDueDate.textContent = newProject.dueDate;
     projectCard.appendChild(projectDueDate);
 
+    // does the same for the the priority information (will probably delete)
     const projectPriority = document.createElement("p");
     projectPriority.textContent = newProject.priority;
     projectCard.appendChild(projectPriority);
 
+    // add onClick event that runs the function "makeProjectDisplayPage"
+    // passes the object's title as a parameter
     projectCard.addEventListener("click", () => {
         makeProjectDisplayPage(newProject.title)
        
     })
 
 
-
-
-    console.log(projectCard.id)
-
+    // appends the projectCard div to the sidebar div
     sideBar.appendChild(projectCard)
-    return projectID;
 
+    // returns the projectID(?)
+    return projectID;
 }
 
 
-
+// uses the above variables 'form' and 'dialog'
+// adds a submit event listener to the form element
+// uses FormData method to assign key value pairs from the submitted form 
+// assigns that data to fd
+// fd is then converted into a true object using Object.fromEntries 
+// the imported function makeNewProject creates a new project using the new object stored in obj
+// the dialog is closed and the form is reset
+// makeProjectSelection is then run 
 export function addNewProject() {
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         let fd = new FormData(form);
+        console.log(fd)
         let obj = Object.fromEntries(fd)
-
+        console.log(obj)
         makeNewProject(obj.title, obj.dueDate, obj.priority);
         dialog.close();
         form.reset();
@@ -152,11 +171,6 @@ function makeAddTaskButton(value){
     addTask(addTaskButton)
 }
 
-function makeIndividualTaskArrs(projectID){
-    
-
-
-}
 
 const masterArr = []
 let taskArr = [];
@@ -174,6 +188,7 @@ function addTask(element){
 
 }
 
+// should be working directly with the object
 
 
 
