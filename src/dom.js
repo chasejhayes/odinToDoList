@@ -114,7 +114,7 @@ function makeProjectSelection() {
     // add onClick event that runs the function "makeProjectDisplayPage"
     // passes the object's title as a parameter
     projectCard.addEventListener("click", () => {
-        makeProjectDisplayPage(newProject.title)
+        makeProjectDisplayPage(newProject.title, newProject.id)
        
     })
 
@@ -154,39 +154,57 @@ export function addNewProject() {
 }
 
 
-function makeProjectDisplayPage(title){
+function makeProjectDisplayPage(title, id){
     display.textContent = "";
     const titleDiv = document.createElement("div");
     titleDiv.textContent = title;
-    titleDiv.id = "titleDiv";
+    let buttonID = id;
+    titleDiv.id = id
     display.appendChild(titleDiv);
-
-    makeAddTaskButton(display)
+    makeAddTaskButton(display, buttonID)
 }
 
-function makeAddTaskButton(value){
+function makeAddTaskButton(value, id){
     const addTaskButton = document.createElement("button");
     addTaskButton.textContent = "Add task";
+    addTaskButton.id = id
     value.appendChild(addTaskButton);
-    addTask(addTaskButton)
+    addTask(addTaskButton, id)
 }
 
 
 const masterArr = []
 let taskArr = [];
 
-function addTask(element){
-    
+
+
+function addTask(element, id){
+    let location = id;
     element.addEventListener("click", () => {
         let newTask = prompt("Enter a new task");
-        masterArr.push(taskArr);
-        return taskArr.push(newTask);
+        console.log(projectArr)
+         const proj = projectArr.map(object => {
+        if (object.id = location) {
+            object.arr.push(newTask)
+        }
     })
+    console.log(proj)
+    return proj
+  
+    })
+
+   
+
 
     console.log(taskArr)
     console.log(masterArr)
 
 }
+
+
+// the div ID now matches the object ID
+
+
 
 // should be working directly with the object
 
@@ -194,3 +212,7 @@ function addTask(element){
 
 
 // make individual functions for button that displays tasks/title/etc
+
+
+// connect the dom id
+// when clicking on the title card

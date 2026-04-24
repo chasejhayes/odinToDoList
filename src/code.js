@@ -22,11 +22,13 @@ export let projectArr = [];
 
 // function that uses the Project class to create a new project
 // assigns a unique ID to the project
-// creates a taskArr (?)
+// adds an empty array to each object
+// creates a taskArr (?)(delete)
 // returns projectArr while pushing the new project into the array, also returns the taskArr
 export function makeNewProject(title, dueDate, priority){
     let project = new Project(title, dueDate, priority);
     project.id = crypto.randomUUID();
+    project.arr = [];
     let taskArr = [];
     return projectArr.push(project), taskArr
 }
@@ -35,8 +37,13 @@ export function makeNewProject(title, dueDate, priority){
 // return the taskArr after pushing the new task to it
 export function makeNewTask(title){
     let task = new Task(title);
-    return taskArr.push(task)
+    return project.Arr.push(task)
 }
+
+// How do I assign new tasks to a specific project.arr 
+// using the ID seems most likely as position will be in flux
+// so how do you use position? 
+// we want to push new Tasks to project.arr
 
 
 // To do: go through each function and label
