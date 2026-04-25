@@ -139,9 +139,7 @@ export function addNewProject() {
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         let fd = new FormData(form);
-        console.log(fd)
         let obj = Object.fromEntries(fd)
-        console.log(obj)
         makeNewProject(obj.title, obj.dueDate, obj.priority);
         dialog.close();
         form.reset();
@@ -164,17 +162,14 @@ function makeProjectDisplayPage(title, id){
     makeAddTaskButton(display, buttonID)
 }
 
-function makeAddTaskButton(value, id){
+function makeAddTaskButton(display, id){
     const addTaskButton = document.createElement("button");
     addTaskButton.textContent = "Add task";
     addTaskButton.id = id
-    value.appendChild(addTaskButton);
+    display.appendChild(addTaskButton);
     addTask(addTaskButton, id)
 }
 
-
-const masterArr = []
-let taskArr = [];
 
 
 
@@ -183,27 +178,22 @@ function addTask(element, id){
     element.addEventListener("click", () => {
         let newTask = prompt("Enter a new task");
         console.log(projectArr)
-         const proj = projectArr.map(object => {
-        if (object.id = location) {
+        const proj = projectArr.map(object => {
+        if (object.id == location) {
             object.arr.push(newTask)
+        } else{
+            return object
         }
     })
-    console.log(proj)
+    console.log(projectArr[0])
+    console.log(projectArr[1])
     return proj
   
     })
-
-   
-
-
-    console.log(taskArr)
-    console.log(masterArr)
-
 }
 
 
-// the div ID now matches the object ID
-
+// For some reason the ID is changing when a task is added, map is the possibly the cause
 
 
 // should be working directly with the object

@@ -37,7 +37,7 @@ export function makeNewProject(title, dueDate, priority){
 // return the taskArr after pushing the new task to it
 export function makeNewTask(title){
     let task = new Task(title);
-    return project.Arr.push(task)
+    return taskArr.push(task)
 }
 
 // How do I assign new tasks to a specific project.arr 
