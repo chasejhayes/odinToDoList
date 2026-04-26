@@ -1,14 +1,4 @@
-
-
 import { makeNewProject, projectArr } from "./code.js";
-
-const container = document.querySelector("#container")
-
-
-// end of functions that style home page
-
-
-
 
 
 // selects the 'create new project' button 
@@ -36,9 +26,7 @@ function makeProjectSelection() {
     projectCard.classList.add("project");
     // makes the DOM id equal to the generated id
     projectCard.id = newProject.id;
-    // assigns the project DOM id value to a variable (?)
-    const projectID = projectCard.id;
-
+  
     // creates a header element and makes the text content that of the selected object title
     // appends the heading to the created div 
     const projectTitle = document.createElement("h1");
@@ -65,9 +53,6 @@ function makeProjectSelection() {
 
     // appends the projectCard div to the sidebar div
     sideBar.appendChild(projectCard)
-
-    // returns the projectID(?)
-    return projectID;
 }
 
 
@@ -135,4 +120,35 @@ function addTask(element, id){
   
     })
 }
+
+
+// To do:
+
+// Next:
+// split make project selection up into smaller pieces 
+// make the add task a dialog, not an alert
+// use the dom to create the dialogs/delete code from template HTML
+
+// Tasks:
+// format display for added tasks
+// make checkbox that sends tasks to the bottom in a separate div
+// make a delete task button
+// make an edit task button
+//make the finished todos expandable/shrinkable
+
+// Projects:
+// make an "archive project" button that sends the project to another array
+// make a "delete project" that deletes the project
+// make a button that replaces the projects with the archived projects sorted by and displaying the date completed (look at external libraries for dates and times)
+
+// Misc:
+// drop shadow for clicking on items/mousing over
+// header shrinks too much
+// figure out best practice for modules 
+// set up local storage 
+
+
+
+
+
 

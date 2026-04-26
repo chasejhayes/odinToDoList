@@ -1,4 +1,7 @@
 // DOM styling for main page
+
+const container = document.querySelector("#container")
+
 function makeHeader() {
     const header = document.createElement("div");
     header.id = "header";
