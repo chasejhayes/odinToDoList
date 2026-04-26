@@ -6,13 +6,6 @@ class Project{
     }
 }
 
-// class that creates a task
-class Task{
-    constructor(title){
-        this.title = title
-    }
-}
-
 
 // an exported array that stores all created projects
 export let projectArr = [];
@@ -30,25 +23,6 @@ export function makeNewProject(title){
 }
 
 
-// (!) probably delete as askArr no longer exists and it still works
-// function that uses the Task class to create a new task
-// return the taskArr after pushing the new task to it
-export function makeNewTask(title){
-    let task = new Task(title);
-    return taskArr.push(task)
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -61,3 +35,14 @@ export function makeNewTask(title){
 // check box to cross off individual tasks 
 // css that makes there be a drop shadow when moused over
 // Header should only shrink so far
+// Make dialog using JS DOM manipulation 
+
+
+
+// UI:
+// a main page that shows all projects and the create new project button
+// each project has a new page that shows to dos, an option to show finished todos, a way to expand todos and edit them, checking them off to add them to finished, delete, group finished todos by date completed
+
+// be aware of external libraries like date-fns for formatting and manipulating dates and times
+
+// set up local storage 
