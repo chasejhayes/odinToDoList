@@ -4,7 +4,48 @@ import { makeNewProject, projectArr } from "./code.js";
 // selects the 'create new project' button 
 // on click it opens a dialog (pop up window)
 
-export function runNewFormCreation() {
+
+
+const formContainer = document.getElementById("formContainer")
+
+export function createProjectForm(){
+    const dialog = document.createElement("dialog")
+    dialog.id = "form_dialog"
+    formContainer.appendChild(dialog)
+
+    const formDiv = document.createElement("form")
+    formDiv.action = ""
+    formDiv.id = "form"
+    formDiv.method = "dialog"
+    dialog.appendChild(formDiv)
+
+    const formElement = document.createElement("div")
+    formElement.classList.add("form_element")
+    formDiv.appendChild(formElement)
+
+    const formLabel = document.createElement("label")
+    formLabel.for="title"
+    formLabel.textContent="Title: "
+    formElement.appendChild(formLabel)
+
+    const formInput = document.createElement("input")
+    formInput.type = "text"
+    formInput.id = "title"
+    formInput.name = "title"
+    formElement.appendChild(formInput)
+
+    const formButton = document.createElement("button")
+    formButton.type = "submit"
+    formButton.value = "submit"
+    formButton.textContent = "submit"
+    formDiv.appendChild(formButton)
+    
+    
+}
+
+
+export function runNewFormCreation(func) {
+    func;
     const button = document.querySelector("button");
     button.addEventListener("click", () => {
         document.getElementById('form_dialog').showModal()
@@ -17,16 +58,19 @@ const form = document.querySelector("form")
 const dialog = document.querySelector("#form_dialog")
 
 
-
-
-function newGetProject(){
+// creats new project
+function getProject() {
     const newProject = projectArr.at(-1)
     const projectCard = document.createElement("div");
     projectCard.classList.add("project");
     projectCard.id = newProject.id;
-    return newProject, projectCard
 
+    createProjectHeader(newProject, projectCard)
+    runMakeProjectDisplayPage(newProject, projectCard)
+
+    sideBar.appendChild(projectCard)
 }
+
 
 function createProjectHeader(project, div){
     const projectTitle = document.createElement("h1");
@@ -87,14 +131,6 @@ function makeAddTaskButton(display, id) {
 }
 
 
-// creats new project
-function getProject() {
-    newGetProject()
-    createProjectHeader(newProject, projectCard)
-    runMakeProjectDisplayPage(newProject, projectCard)
-
-    sideBar.appendChild(projectCard)
-}
 
 
 function addTask(element, id) {
@@ -120,7 +156,6 @@ function addTask(element, id) {
 // To do:
 
 // Next:
-// split make project selection up into smaller pieces 
 // make the add task a dialog, not an alert
 // use the dom to create the dialogs/delete code from template HTML
 
