@@ -18,42 +18,29 @@ const dialog = document.querySelector("#form_dialog")
 
 
 
-function makeProjectSelection() {
-    // select object from project array
+
+function newGetProject(){
     const newProject = projectArr.at(-1)
-    // create a div on which to display project and assign a class
     const projectCard = document.createElement("div");
     projectCard.classList.add("project");
-    // makes the DOM id equal to the generated id
     projectCard.id = newProject.id;
-  
-    // creates a header element and makes the text content that of the selected object title
-    // appends the heading to the created div 
-    const projectTitle = document.createElement("h1");
-    projectTitle.textContent = newProject.title;
-    projectCard.appendChild(projectTitle);
+    return newProject, projectCard
 
-    // does the same but for the due date information (will probably delete)
-    const projectDueDate = document.createElement("p");
-    projectDueDate.textContent = newProject.dueDate;
-    projectCard.appendChild(projectDueDate);
-
-    // does the same for the the priority information (will probably delete)
-    const projectPriority = document.createElement("p");
-    projectPriority.textContent = newProject.priority;
-    projectCard.appendChild(projectPriority);
-
-    // add onClick event that runs the function "makeProjectDisplayPage"
-    // passes the object's title as a parameter
-    projectCard.addEventListener("click", () => {
-        makeProjectDisplayPage(newProject.title, newProject.id)
-       
-    })
-
-
-    // appends the projectCard div to the sidebar div
-    sideBar.appendChild(projectCard)
 }
+
+function createProjectHeader(project, div){
+    const projectTitle = document.createElement("h1");
+    projectTitle.textContent = project.title;
+   div.appendChild(projectTitle)
+}
+
+
+function runMakeProjectDisplayPage(project, div){
+    div.addEventListener("click", () => {
+        makeProjectDisplayPage(project.title, project.id)
+    })
+}
+ 
 
 
 // uses the above variables 'form' and 'dialog'
@@ -74,14 +61,14 @@ export function addNewProject() {
         form.reset();
         console.log(projectArr)
 
-        makeProjectSelection()
+       getProject()
 
     })
 
 }
 
 
-function makeProjectDisplayPage(title, id){
+function makeProjectDisplayPage(title, id) {
     display.textContent = "";
     const titleDiv = document.createElement("div");
     titleDiv.textContent = title;
@@ -91,7 +78,7 @@ function makeProjectDisplayPage(title, id){
     makeAddTaskButton(display, buttonID)
 }
 
-function makeAddTaskButton(display, id){
+function makeAddTaskButton(display, id) {
     const addTaskButton = document.createElement("button");
     addTaskButton.textContent = "Add task";
     addTaskButton.id = id
@@ -100,24 +87,32 @@ function makeAddTaskButton(display, id){
 }
 
 
+// creats new project
+function getProject() {
+    newGetProject()
+    createProjectHeader(newProject, projectCard)
+    runMakeProjectDisplayPage(newProject, projectCard)
+
+    sideBar.appendChild(projectCard)
+}
 
 
-function addTask(element, id){
+function addTask(element, id) {
     let location = id;
     element.addEventListener("click", () => {
         let newTask = prompt("Enter a new task");
         console.log(projectArr)
         const proj = projectArr.map(object => {
-        if (object.id == location) {
-            object.arr.push(newTask)
-        } else{
-            return object
-        }
-    })
-    console.log(projectArr[0])
-    console.log(projectArr[1])
-    return proj
-  
+            if (object.id == location) {
+                object.arr.push(newTask)
+            } else {
+                return object
+            }
+        })
+        console.log(projectArr[0])
+        console.log(projectArr[1])
+        return proj
+
     })
 }
 
