@@ -18,15 +18,15 @@ const dialog = document.querySelector("#form_dialog")
 
 
 
+// Why can't I call this in getProject below?
+// function newGetProject(){
+//     const newProject = projectArr.at(-1)
+//     const projectCard = document.createElement("div");
+//     projectCard.classList.add("project");
+//     projectCard.id = newProject.id;
+//     return newProject, projectCard
 
-function newGetProject(){
-    const newProject = projectArr.at(-1)
-    const projectCard = document.createElement("div");
-    projectCard.classList.add("project");
-    projectCard.id = newProject.id;
-    return newProject, projectCard
-
-}
+// }
 
 function createProjectHeader(project, div){
     const projectTitle = document.createElement("h1");
@@ -123,9 +123,8 @@ function addTask(element, id) {
 // To do:
 
 // Next:
-// split make project selection up into smaller pieces 
 // make the add task a dialog, not an alert
-// use the dom to create the dialogs/delete code from template HTML
+
 
 // Tasks:
 // format display for added tasks
@@ -144,6 +143,7 @@ function addTask(element, id) {
 // header shrinks too much
 // figure out best practice for modules 
 // set up local storage 
+// use the dom to create the dialogs/delete code from template HTML
 
 
 
