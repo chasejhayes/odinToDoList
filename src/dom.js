@@ -89,7 +89,10 @@ function makeAddTaskButton(display, id) {
 
 // creats new project
 function getProject() {
-    newGetProject()
+    const newProject = projectArr.at(-1)
+    const projectCard = document.createElement("div");
+    projectCard.classList.add("project");
+    projectCard.id = newProject.id;
     createProjectHeader(newProject, projectCard)
     runMakeProjectDisplayPage(newProject, projectCard)
 
