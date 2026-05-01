@@ -1,23 +1,6 @@
-import { makeNewProject, projectArr } from "./code.js";
+// import { makeNewProject, projectArr } from "./code.js";
 
-
-// selects the 'create new project' button 
-// on click it opens a dialog (pop up window)
-
-export function runNewFormCreation() {
-    const button = document.querySelector("button");
-    button.addEventListener("click", () => {
-        document.getElementById('form_dialog').showModal()
-    })
-
-}
-
-// assigns DOM elements to variables 
-const form = document.querySelector("form")
-const dialog = document.querySelector("#form_dialog")
-
-
-
+// Misc.
 // Why can't I call this in getProject below?
 // function newGetProject(){
 //     const newProject = projectArr.at(-1)
@@ -27,6 +10,36 @@ const dialog = document.querySelector("#form_dialog")
 //     return newProject, projectCard
 
 // }
+
+
+
+
+
+// Make project functions
+class Project{
+    constructor(title){
+        this.title = title;
+    }
+}
+
+let projectArr = [];
+
+function makeNewProject(title){
+    let project = new Project(title);
+    project.id = crypto.randomUUID();
+    project.arr = [];
+    return projectArr.push(project)
+}
+
+export function runNewProjectFormCreation() {
+    const button = document.getElementById("projectButton")
+    button.addEventListener("click", () => {
+        document.getElementById('form_dialog').showModal()
+    })
+}
+
+const projectForm = document.getElementById("project_form")
+const dialog = document.querySelector("#project_dialog")
 
 function createProjectHeader(project, div){
     const projectTitle = document.createElement("h1");
@@ -40,7 +53,6 @@ function runMakeProjectDisplayPage(project, div){
         makeProjectDisplayPage(project.title, project.id)
     })
 }
- 
 
 
 // uses the above variables 'form' and 'dialog'
@@ -52,13 +64,13 @@ function runMakeProjectDisplayPage(project, div){
 // the dialog is closed and the form is reset
 // makeProjectSelection is then run 
 export function addNewProject() {
-    form.addEventListener("submit", (e) => {
+    projectForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        let fd = new FormData(form);
+        let fd = new FormData(projectForm);
         let obj = Object.fromEntries(fd)
         makeNewProject(obj.title);
         dialog.close();
-        form.reset();
+        projectForm.reset();
         console.log(projectArr)
 
        getProject()
@@ -66,7 +78,6 @@ export function addNewProject() {
     })
 
 }
-
 
 function makeProjectDisplayPage(title, id) {
     display.textContent = "";
@@ -78,16 +89,6 @@ function makeProjectDisplayPage(title, id) {
     makeAddTaskButton(display, buttonID)
 }
 
-function makeAddTaskButton(display, id) {
-    const addTaskButton = document.createElement("button");
-    addTaskButton.textContent = "Add task";
-    addTaskButton.id = id
-    display.appendChild(addTaskButton);
-    addTask(addTaskButton, id)
-}
-
-
-// creats new project
 function getProject() {
     const newProject = projectArr.at(-1)
     const projectCard = document.createElement("div");
@@ -97,6 +98,46 @@ function getProject() {
     runMakeProjectDisplayPage(newProject, projectCard)
 
     sideBar.appendChild(projectCard)
+}
+
+
+
+
+
+
+// Make task functions
+class Task{
+    constructor(title){
+        this.title = title
+    }
+}
+
+export function runNewTaskFormCreation(){
+    const button = document.getElementsByClassName("taskButton")
+    button.addEventListener("click",()=>{
+        document.getElementById("add_task").showModal()
+    })
+}
+
+const taskForm = document.getElementById("task_form")
+
+export function addNewTask(){
+    taskForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let fd = new FormData(taskForm)
+        let obj = Object.fromEntries(fd)
+    })
+}
+
+
+
+function makeAddTaskButton(display, id) {
+    const addTaskButton = document.createElement("button");
+    addTaskButton.textContent = "Add task";
+    addTaskButton.id = id
+    addTaskButton.classList.add("taskButton")
+    display.appendChild(addTaskButton);
+    addTask(addTaskButton, id)
 }
 
 
@@ -141,7 +182,7 @@ function addTask(element, id) {
 // Misc:
 // drop shadow for clicking on items/mousing over
 // header shrinks too much
-// figure out best practice for modules 
+// figure out best practice for modules (answer: generate tasks, generate projects, generate page stylings)
 // set up local storage 
 // use the dom to create the dialogs/delete code from template HTML
 

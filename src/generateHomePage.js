@@ -43,6 +43,7 @@ function makeDisplay() {
 function makeNewProjectButton() {
     const projectButton = document.createElement("button");
     projectButton.classList.add("button");
+    projectButton.id = ("projectButton")
     projectButton.textContent = "Create New Project";
 
     sideBar.appendChild(projectButton)
