@@ -16,41 +16,28 @@
 
 
 // Make project functions
-class Project{
-    constructor(title){
+class Project {
+    constructor(title) {
         this.title = title;
     }
 }
 
 let projectArr = [];
 
-function makeNewProject(title){
+function makeNewProject(title) {
     let project = new Project(title);
     project.id = crypto.randomUUID();
     project.arr = [];
     return projectArr.push(project)
 }
 
-export function runNewProjectFormCreation() {
-    const button = document.getElementById("projectButton")
-    button.addEventListener("click", () => {
-        document.getElementById('form_dialog').showModal()
-    })
-}
-
 const projectForm = document.getElementById("project_form")
 const dialog = document.querySelector("#project_dialog")
 
-function createProjectHeader(project, div){
-    const projectTitle = document.createElement("h1");
-    projectTitle.textContent = project.title;
-   div.appendChild(projectTitle)
-}
-
-
-function runMakeProjectDisplayPage(project, div){
-    div.addEventListener("click", () => {
-        makeProjectDisplayPage(project.title, project.id)
+export function runNewProjectFormCreation() {
+    const button = document.getElementById("projectButton")
+    button.addEventListener("click", () => {
+        document.getElementById('project_dialog').showModal()
     })
 }
 
@@ -73,7 +60,7 @@ export function addNewProject() {
         projectForm.reset();
         console.log(projectArr)
 
-       getProject()
+        getProject()
 
     })
 
@@ -88,6 +75,19 @@ function makeProjectDisplayPage(title, id) {
     display.appendChild(titleDiv);
     makeAddTaskButton(display, buttonID)
 }
+
+function runMakeProjectDisplayPage(project, div) {
+    div.addEventListener("click", () => {
+        makeProjectDisplayPage(project.title, project.id)
+    })
+}
+
+function createProjectHeader(project, div) {
+    const projectTitle = document.createElement("h1");
+    projectTitle.textContent = project.title;
+    div.appendChild(projectTitle)
+}
+
 
 function getProject() {
     const newProject = projectArr.at(-1)
@@ -105,29 +105,15 @@ function getProject() {
 
 
 
-// Make task functions
-class Task{
-    constructor(title){
-        this.title = title
-    }
-}
+// Task functions
 
-export function runNewTaskFormCreation(){
-    const button = document.getElementsByClassName("taskButton")
-    button.addEventListener("click",()=>{
+
+export function runNewTaskFormCreation(button) {
+    button.addEventListener("click", () => {
         document.getElementById("add_task").showModal()
     })
 }
 
-const taskForm = document.getElementById("task_form")
-
-export function addNewTask(){
-    taskForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let fd = new FormData(taskForm)
-        let obj = Object.fromEntries(fd)
-    })
-}
 
 
 
@@ -137,10 +123,40 @@ function makeAddTaskButton(display, id) {
     addTaskButton.id = id
     addTaskButton.classList.add("taskButton")
     display.appendChild(addTaskButton);
-    addTask(addTaskButton, id)
+    runNewTaskFormCreation(addTaskButton)
+    addNewTask(id)
+    // addTask(addTaskButton, id)
 }
 
+const taskForm = document.getElementById("task_form")
+const taskDialog = document.getElementById("add_task")
 
+export function addNewTask(id) {
+    const location = id;
+    taskForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let fd = new FormData(taskForm)
+        let obj = Object.fromEntries(fd)
+        console.log(obj)
+        console.log(location)
+        console.log(projectArr)
+        const proj = projectArr.map(object => {
+            if (object.id == location) {
+                object.arr.push(obj)
+            } else {
+                return object
+            }
+        })
+        taskDialog.close();
+        taskForm.reset();
+        console.log(projectArr[0])
+        console.log(projectArr[1])
+        return proj
+
+    })
+}
+
+// old
 function addTask(element, id) {
     let location = id;
     element.addEventListener("click", () => {
@@ -165,6 +181,7 @@ function addTask(element, id) {
 
 // Next:
 // make the add task a dialog, not an alert
+// subtask: fix arr bug, fix typeError
 
 
 // Tasks:
