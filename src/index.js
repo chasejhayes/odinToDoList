@@ -1,7 +1,7 @@
 import "./styles.css";
 import { } from "./code.js";
 
-import { runNewProjectFormCreation, addNewProject, runNewTaskFormCreation} from "./dom.js";
+import { runNewProjectFormCreation, addNewProject} from "./dom.js";
 
 import { generateHomePage } from "./generateHomePage.js";
 
@@ -14,8 +14,7 @@ runNewProjectFormCreation();
 // updates project array with submitted information
 addNewProject()
 
-// runs advent listener to show add task form
-runNewTaskFormCreation()
+
 
 
 
